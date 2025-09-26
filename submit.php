@@ -1,6 +1,5 @@
 <?php
 include 'db_connect.php';
-include 'config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -9,7 +8,7 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['phone'], $_POST['message'])) {
         $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
         $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
@@ -24,32 +23,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
             $mail = new PHPMailer(true);
             try {
                 $mail->isSMTP();
-                $mail->Host = SMTP_HOST;
+                $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = SMTP_USERNAME;
-                $mail->Password = SMTP_PASSWORD;
+                $mail->Username = 'reservation@airlineswebsales.com';
+                $mail->Password = 'xvtfpxrifncatjzg';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port = SMTP_PORT;
-                $mail->setFrom(SMTP_USERNAME, FROM_NAME);
-                $mail->addAddress(ADMIN_EMAIL);
+                $mail->Port = 465;
+                $mail->setFrom('reservation@airlineswebsales.com', 'Ticketfeeandtx');
+                $mail->addAddress('sharunch11@gmail.com');
                 $mail->isHTML(true);
                 $mail->Subject = 'New Contact Form Submission';
-                $mail->Body = "<h2>New Contact Request</h2><p><strong>Name:</strong> ".htmlspecialchars($first_name)." ".htmlspecialchars($last_name)."</p><p><strong>Email:</strong> ".htmlspecialchars($email)."</p><p><strong>Phone:</strong> ".htmlspecialchars($phone)."</p><p><strong>Message:</strong></p><p>".nl2br(htmlspecialchars($message))."</p>";
+                $mail->Body = "<h2>New Contact Request</h2><p><strong>Name:</strong> $first_name $last_name</p><p><strong>Email:</strong> $email</p><p><strong>Phone:</strong> $phone</p><p><strong>Message:</strong> $message</p>";
                 $mail->send();
             } catch (Exception $e) {
-                error_log("Mailer Error: " . $mail->ErrorInfo);
+                // Continue even if email fails
             }
             header('Location: thanks.php');
             exit();
         } else {
-            echo "Database error: " . mysqli_error($conn);
+            echo "Database error";
         }
-        mysqli_close($conn);
     } else {
-        echo "Missing required fields";
+        echo "Missing fields";
     }
 } else {
-    echo "No data received";
+    echo "Invalid request";
 }
 ?>
 
