@@ -91,7 +91,7 @@
           <div style="width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <i class="ri-map-pin-line" style="color: white; font-size: 1.25rem;"></i>
           </div>
-          <span style="color: #cbd5e1; font-weight: 500;">Dallas, TX</span>
+          <span style="color: #cbd5e1; font-weight: 500;">337 Madison SE Abingdon, VA 24210-3731</span>
         </div>
       </div>
     </div>
