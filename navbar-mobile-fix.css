@@ -1,0 +1,15 @@
+/* Mobile Navbar Fixes */
+@media (max-width: 768px) {
+  nav > div > div {
+    padding: 0 1rem !important;
+  }
+  
+  nav img {
+    width: 8rem !important;
+    height: auto !important;
+  }
+  
+  .mobile-menu-btn {
+    padding: 0.5rem !important;
+  }
+}

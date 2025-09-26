@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body:not(.index-page) {
+  padding-top: 70px;
+}
+
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 1000 !important;
+}
+
+nav > div {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 1rem !important;
+}
+
+.common-header {
+  margin-top: 0;
+}
+
+.section__container:first-of-type {
+  margin-top: 0;
+}

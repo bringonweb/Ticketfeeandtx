@@ -1,0 +1,267 @@
+/* Minimalistic About Page Styles */
+
+.common-header {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.common-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.common-header p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+/* About Section */
+.about__container {
+  padding: 4rem 1rem;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about__image {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about__badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about__content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.about__intro {
+  font-size: 1.2rem;
+  color: #2563eb;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.section__description {
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.about__features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.feature__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  border-left: 3px solid #2563eb;
+}
+
+.feature__item i {
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+.feature__item span {
+  font-weight: 500;
+  color: #334155;
+}
+
+/* Values Section */
+.values__section {
+  background: #f8fafc;
+  padding: 4rem 0;
+}
+
+.values__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.values__header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.values__header p {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.values__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.value__card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.value__card:hover {
+  transform: translateY(-5px);
+}
+
+.value__icon {
+  width: 4rem;
+  height: 4rem;
+  background: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.value__icon i {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.value__card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.value__card p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Stats Section */
+.stats__section {
+  background: #1e293b;
+  color: white;
+  padding: 4rem 0;
+}
+
+.stats__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.stats__text {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.stats__text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stats__text p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.stat__item {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  transition: background 0.3s ease;
+}
+
+.stat__item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stat__number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+}
+
+.stat__label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about__container {
+    grid-template-columns: 1fr;
+    padding: 3rem 1rem;
+    gap: 2rem;
+  }
+  
+  .common-header h1 {
+    font-size: 2rem;
+  }
+  
+  .values__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about__badge {
+    position: static;
+    margin-top: 1rem;
+    width: fit-content;
+  }
+}
