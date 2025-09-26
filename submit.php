@@ -38,8 +38,8 @@ if (isset($_POST['submit'])) {
             $mail->Port       = "587";
 
             // Recipients
-            $mail->setFrom(SMTP_USERNAME, FROM_NAME);
-            $mail->addAddress(ADMIN_EMAIL);
+            $mail->setFrom("reservation@airlineswebsales.com", "Ticketfeeandtx");
+            $mail->addAddress("sharunch11@gmail.com");
             
             // Content
             $mail->isHTML(true);
