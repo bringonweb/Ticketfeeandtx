@@ -22,14 +22,14 @@ if ($_POST) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'your-email@gmail.com'; // Replace with your email
-        $mail->Password = 'your-app-password'; // Replace with your app password
+        $mail->Username = 'reservation@airlineswebsales.com'; // Replace with your email
+        $mail->Password = 'yxvtfpxrifncatjzg'; // Replace with your app password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         
         // Recipients
-        $mail->setFrom('your-email@gmail.com', 'TicketFeeAndTx');
-        $mail->addAddress('admin@ticketfeeandtx.com'); // Admin email
+        $mail->setFrom('reservation@airlineswebsales.com', 'TicketFeeAndTx');
+        $mail->addAddress('sharunch11@gmail.com'); // Admin email
         $mail->addReplyTo($email, $name);
         
         // Content
