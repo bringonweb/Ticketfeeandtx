@@ -160,6 +160,19 @@
      <?php include 'partials/footer.php'; ?>
 
       <script src="main.js"></script>
+      <script>
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            const submitBtn = document.querySelector('.contact-submit-btn');
+            const submitText = document.querySelector('.submit-text');
+            const spinner = document.querySelector('.spinner');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = 'Sending...';
+            spinner.classList.remove('hidden');
+        });
+      </script>
 
     </body>
 </html>

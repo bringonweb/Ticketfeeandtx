@@ -1,5 +1,6 @@
 <?php
 include 'db_connect.php'; // Include the connection file
+include 'config.php'; // Include the configuration file
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,71 +17,58 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $message = mysqli_real_escape_string($conn, $_POST['message']);
-    $date = mysqli_real_escape_string($conn, $_POST['Y-m-d H:i:s']);
+    $date = date('Y-m-d H:i:s');
 
     // SQL query to insert data
-    // $sql = "INSERT INTO 'usairticketchanges' (first_name, last_name, email, phone, message) 
-    //         VALUES ('$first_name', '$last_name', '$email', '$phone', '$message', '$date')";
-    $sql="INSERT INTO `usairticketchanges`(`first_name`, `last_name`,`email`,`phone`, `message`, `date_time`) VALUES ('$first_name','$last_name','$email','$phone','$message','$date')";
+    $sql = "INSERT INTO `usairticketchanges`(`first_name`, `last_name`,`email`,`phone`, `message`, `date_time`) VALUES ('$first_name','$last_name','$email','$phone','$message','$date')";
     
-    // After successful database insertion
-$mail = new PHPMailer(true);
-
-try {
-    // Server settings
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'adityagupta80041@gmail.com'; // Your Gmail
-    $mail->Password   = 'zpzlkerohziiaouu'; // Your App Password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port       = 465;
-
-    // Recipients
-    $mail->setFrom('adityagupta80041@gmail.com', 'BusinessFlyDeals');
-    $mail->addAddress('adityagupta80041@gmail.com'); // Where to send emails
-    
-    // Content
-    $mail->isHTML(true);
-    $mail->Subject = 'New Contact Form Submission';
-    
-    // Build email body with all form data
-    $email_body = "
-        <h2>New Contact Request USAirTicketChanges</h2>
-        <p><strong>Name:</strong> $first_name</p>
-        <p><strong>Name:</strong> $last_name</p>
-        <p><strong>Email:</strong> $email</p>
-        <p><strong>Phone:</strong> $phone</p>
-        <p><strong>Message:</strong></p>
-        <p>".nl2br($message)."</p>
-        <p><strong>Submitted at:</strong> $date</p>
-    ";
-    
-    $mail->Body = $email_body;
-
-    // Send email
-    $mail->send();
-    
-    // Optional: Plain text version for non-HTML mail clients
-    $mail->AltBody = "New Contact Request\n\n".
-                     "first_name: $first_name\n".
-                     "last_name: $last_name\n".
-                     "email: $email\n".
-                     "Phone: $phone\n".
-                     "Message:\n$message\n\n".
-                     "Submitted at: $date";
-                     
-        header('Location: thanks.php');
-
-} catch (Exception $e) {
-    // Log the error but don't break the user experience
-    error_log("Mailer Error: " . $mail->ErrorInfo);
-    // You can choose to handle this error differently if needed
-}
-
     // Execute the query and check for errors
     if (mysqli_query($conn, $sql)) {
-        echo "Inserted successfully!";
+        // After successful database insertion, send email
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host       = SMTP_HOST;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = SMTP_USERNAME;
+            $mail->Password   = SMTP_PASSWORD;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = SMTP_PORT;
+
+            // Recipients
+            $mail->setFrom(SMTP_USERNAME, FROM_NAME);
+            $mail->addAddress(ADMIN_EMAIL);
+            
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = 'New Contact Form Submission';
+            
+            // Build email body with sanitized data
+            $email_body = "
+                <h2>New Contact Request USAirTicketChanges</h2>
+                <p><strong>First Name:</strong> ".htmlspecialchars($first_name)."</p>
+                <p><strong>Last Name:</strong> ".htmlspecialchars($last_name)."</p>
+                <p><strong>Email:</strong> ".htmlspecialchars($email)."</p>
+                <p><strong>Phone:</strong> ".htmlspecialchars($phone)."</p>
+                <p><strong>Message:</strong></p>
+                <p>".nl2br(htmlspecialchars($message))."</p>
+                <p><strong>Submitted at:</strong> $date</p>
+            ";
+            
+            $mail->Body = $email_body;
+
+            // Send email
+            $mail->send();
+            
+        } catch (Exception $e) {
+            error_log("Mailer Error: " . $mail->ErrorInfo);
+        }
+        
+        // Redirect to thank you page
+        header('Location: thanks.php');
+        exit();
     } else {
         echo "Something went wrong: " . mysqli_error($conn);
     }

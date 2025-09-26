@@ -1,9 +1,9 @@
 <?php
 // Database connection details
 $host = "localhost"; // Your database host
-$user = "u570369157_businessflydea";      // Your database username
-$password = "u570369157_Businessflydea";      // Your database password
-$database = "u570369157_businessflydea"; // Your database name
+$user = "u746468631_ticketfeeandtx";      // Your database username
+$password = "Ticketfeeandtx@!21";      // Your database password
+$database = "u746468631_ticketfeeandtx"; // Your database name
 
 // Create connection using mysqli_connect
 $conn = mysqli_connect($host, $user, $password, $database);

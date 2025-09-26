@@ -68,7 +68,7 @@
 
     <!-- Contact Information -->
     <div style="border-top: 1px solid #475569; margin-top: 2rem; padding-top: 2rem;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+      <div class="contact-info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
         <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
           <div style="width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <i class="ri-phone-line" style="color: white; font-size: 1.25rem;"></i>
@@ -113,6 +113,16 @@
 </footer>
 
 <style>
+@media (max-width: 768px) {
+  .contact-info-grid {
+    text-align: left !important;
+  }
+  
+  .contact-info-grid > div {
+    justify-content: flex-start !important;
+  }
+}
+
 @media (min-width: 768px) {
   footer .bottom-bar {
     flex-direction: row;

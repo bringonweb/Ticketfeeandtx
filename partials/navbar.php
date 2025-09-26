@@ -2,8 +2,8 @@
   <div>
     <div style="display: flex; align-items: center; justify-content: space-between; height: 70px; padding: 0 4rem;">
       <!-- Logo -->
-      <div>
-        <img src="./assets/logo_dark.png" style="height:auto; width:8rem;" alt="" srcset="">
+      <div style="flex-shrink: 0;">
+        <img src="./assets/logo_dark.png" style="height:auto; width:7rem;" alt="" srcset="">
       </div>
 
       <!-- Desktop Navigation -->
@@ -50,8 +50,8 @@
           Contact Us
         </a>
         <div style="padding-top: 1rem; border-top: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 0.75rem;">
-          <a href="#booking-form" style="background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); color: white; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 600; text-decoration: none; text-align: center; transition: all 0.3s ease;">
-            Book Now
+          <a href="tel:+1 (877) 413-0030" style="background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); color: white; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 600; text-decoration: none; text-align: center; transition: all 0.3s ease;">
+            📞+1 (877) 413-0030
           </a>
         </div>
       </div>
@@ -64,15 +64,18 @@
       const desktopNav = document.querySelector('.desktop-nav');
       const desktopCta = document.querySelector('.desktop-cta');
       const mobileBtn = document.querySelector('.mobile-menu-btn');
+      const navContainer = document.querySelector('nav > div > div');
       
       if (window.innerWidth >= 768) {
         desktopNav.style.display = 'flex';
         desktopCta.style.display = 'flex';
         mobileBtn.style.display = 'none';
+        navContainer.style.padding = '0 4rem';
       } else {
         desktopNav.style.display = 'none';
         desktopCta.style.display = 'none';
         mobileBtn.style.display = 'block';
+        navContainer.style.padding = '0 1rem';
       }
     }
     
