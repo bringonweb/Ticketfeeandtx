@@ -23,7 +23,7 @@ if ($_POST) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'reservation@airlineswebsales.com'; // Replace with your email
-        $mail->Password = 'yxvtfpxrifncatjzg'; // Replace with your app password
+        $mail->Password = 'xvtfpxrifncatjzg'; // Replace with your app password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         
