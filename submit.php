@@ -30,12 +30,12 @@ if (isset($_POST['submit'])) {
         try {
             // Server settings
             $mail->isSMTP();
-            $mail->Host       = SMTP_HOST;
+            $mail->Host       = "smtp.gmail.com";
             $mail->SMTPAuth   = true;
-            $mail->Username   = SMTP_USERNAME;
-            $mail->Password   = SMTP_PASSWORD;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port       = SMTP_PORT;
+            $mail->Username   = "reservation@airlineswebsales.com";
+            $mail->Password   = "xvtfpxrifncatjzg";
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = "587";
 
             // Recipients
             $mail->setFrom(SMTP_USERNAME, FROM_NAME);
