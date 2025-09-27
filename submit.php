@@ -62,16 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                 try {
                     // Server settings
                     $mail->isSMTP();
-                    $mail->Host       = 'smtp.gmail.com';
+                    $mail->Host       = SMTP_HOST;
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = 'reservation@airlineswebsales.com';
-                    $mail->Password   = 'xvtfpxrifncatjzg'; // Consider moving to config.php
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    $mail->Port       = 587;
+                    $mail->Username   = SMTP_USERNAME;
+                    $mail->Password   = SMTP_PASSWORD;
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                    $mail->Port       = SMTP_PORT;
                     
                     // Recipients
-                    $mail->setFrom('reservation@airlineswebsales.com', 'TicketFeeAndTx');
-                    $mail->addAddress('sharunch11@gmail.com'); // Admin email
+                    $mail->setFrom(SMTP_USERNAME, FROM_NAME);
+                    $mail->addAddress(ADMIN_EMAIL); // Admin email
                     
                     // Reply-to user's email for easy response
                     $mail->addReplyTo($email, $first_name . ' ' . $last_name);
