@@ -55,13 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if (empty($errors)) {
-        // Check database connection
-        if (!$conn) {
-            error_log('Database connection failed: ' . mysqli_connect_error());
-            $_SESSION['error_message'] = 'Database connection error. Please try again later.';
-            header('Location: contact.php');
-            exit();
-        }
         
         // Sanitize and trim input data
         $first_name = mysqli_real_escape_string($conn, trim($_POST['first_name']));

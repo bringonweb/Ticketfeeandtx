@@ -112,7 +112,7 @@
           <!-- Right Side: Contact Form -->
           <div class="contact-form-content">
             <h3>Send Us a Message</h3>
-            <form id="contact-form" action="test_submit.php" method="POST">
+            <form id="contact-form" action="submit.php" method="POST">
               <div class="form__group">
                   <input type="text" name="first_name" class="contact-input" placeholder="First Name" required />
                   <input type="text" name="last_name" class="contact-input" placeholder="Last Name" required />
