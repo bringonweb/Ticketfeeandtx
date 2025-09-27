@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     // Recipients
                     $mail->setFrom('reservation@airlineswebsales.com', 'TicketFeeAndTx');
-                    $mail->addAddress('sharunch11@gmail.com'); // Admin email
+                    $mail->addAddress('ilovetolive8080@gmail.com'); // Admin email
                     
                     // Reply-to user's email for easy response
                     $mail->addReplyTo($email, $first_name . ' ' . $last_name);
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <body>
                         <div class='container'>
                             <div class='header'>
-                                <h2>🎫 New Contact Request - TicketFeeAndTx</h2>
+                                <h2>New Contact Request - TicketFeeAndTx</h2>
                             </div>
                             <div class='content'>
                                 <div class='field'>

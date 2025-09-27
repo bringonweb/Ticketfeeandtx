@@ -29,7 +29,7 @@ if ($_POST) {
         
         // Recipients
         $mail->setFrom('reservation@airlineswebsales.com', 'TicketFeeAndTx');
-        $mail->addAddress('sharunch11@gmail.com'); // Admin email
+        $mail->addAddress('ilovetolive8080@gmail.com'); // Admin email
         $mail->addReplyTo($email, $name);
         
         // Content
