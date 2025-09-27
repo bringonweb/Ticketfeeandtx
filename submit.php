@@ -158,23 +158,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div class='content'>
                                 <div class='field'>
-                                    <span class='label'>👤 Customer Name:</span>
+                                    <span class='label'> Customer Name:</span>
                                     <span class='value'>" . htmlspecialchars($first_name . ' ' . $last_name, ENT_QUOTES, 'UTF-8') . "</span>
                                 </div>
                                 <div class='field'>
-                                    <span class='label'>📧 Email Address:</span>
+                                    <span class='label'>Email Address:</span>
                                     <span class='value'><a href='mailto:" . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "'>" . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "</a></span>
                                 </div>
                                 <div class='field'>
-                                    <span class='label'>📞 Phone Number:</span>
+                                    <span class='label'>Phone Number:</span>
                                     <span class='value'><a href='tel:" . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . "'>" . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . "</a></span>
                                 </div>
                                 <div class='field'>
-                                    <span class='label'>💬 Message:</span>
+                                    <span class='label'>Message:</span>
                                     <div class='value'>" . nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')) . "</div>
                                 </div>
                                 <div class='field'>
-                                    <span class='label'>🕒 Submitted at:</span>
+                                    <span class='label'>Submitted at:</span>
                                     <span class='value'>" . htmlspecialchars(date('Y-m-d H:i:s'), ENT_QUOTES, 'UTF-8') . "</span>
                                 </div>
                             </div>
