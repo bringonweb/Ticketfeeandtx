@@ -1,6 +1,17 @@
 <?php
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include 'db_connect.php'; // Include the connection file
 include 'config.php'; // Include the configuration file
+
+// Check if database connection was successful
+if (!$conn) {
+    error_log('Database connection failed: ' . mysqli_connect_error());
+    die('Database connection failed. Please try again later.');
+}
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -17,14 +28,10 @@ if (session_status() == PHP_SESSION_NONE) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Debug: Log form submission
     error_log('Form submitted with data: ' . print_r($_POST, true));
+    
     // Validate required fields
     $required_fields = ['first_name', 'last_name', 'email', 'phone', 'message'];
     $errors = [];
-    
-    // Debug: Check if submit button exists
-    if (!isset($_POST['submit'])) {
-        error_log('Submit button not found in POST data');
-    }
     
     foreach ($required_fields as $field) {
         if (empty($_POST[$field]) || trim($_POST[$field]) === '') {
@@ -224,9 +231,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error_message'] = "Please fix the following errors:\n• " . implode("\n• ", $errors);
     }
     
-    // Close database connection
-    mysqli_close($conn);
-    
     // If there were errors, redirect back to form
     if (!empty($errors) || isset($_SESSION['error_message'])) {
         header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? 'contact.php'));
@@ -234,8 +238,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
 } else {
-    $_SESSION['error_message'] = "Invalid request. Please use the contact form.";
+    // Not a POST request
     header('Location: contact.php');
     exit();
+}
+
+// Close database connection if it exists
+if (isset($conn)) {
+    mysqli_close($conn);
 }
 ?>
