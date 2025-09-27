@@ -14,10 +14,17 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Debug: Log form submission
+    error_log('Form submitted with data: ' . print_r($_POST, true));
     // Validate required fields
     $required_fields = ['first_name', 'last_name', 'email', 'phone', 'message'];
     $errors = [];
+    
+    // Debug: Check if submit button exists
+    if (!isset($_POST['submit'])) {
+        error_log('Submit button not found in POST data');
+    }
     
     foreach ($required_fields as $field) {
         if (empty($_POST[$field]) || trim($_POST[$field]) === '') {
@@ -41,6 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     }
     
     if (empty($errors)) {
+        // Check database connection
+        if (!$conn) {
+            error_log('Database connection failed: ' . mysqli_connect_error());
+            $_SESSION['error_message'] = 'Database connection error. Please try again later.';
+            header('Location: contact.php');
+            exit();
+        }
+        
         // Sanitize and trim input data
         $first_name = mysqli_real_escape_string($conn, trim($_POST['first_name']));
         $last_name = mysqli_real_escape_string($conn, trim($_POST['last_name']));
@@ -49,11 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         $message = mysqli_real_escape_string($conn, trim($_POST['message']));
         $date = date('Y-m-d H:i:s');
         
+        error_log('Processing form data for: ' . $email);
+        
         // Use prepared statement for better security
-        $stmt = mysqli_prepare($conn, "INSERT INTO `contacts` (`first_name`, `last_name`, `email`, `phone`, `message`, `date_time`) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = mysqli_prepare($conn, "INSERT INTO `contacts` (`first_name`, `last_name`, `email`, `phone`, `message`) VALUES (?, ?, ?, ?, ?)");
         
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ssssss", $first_name, $last_name, $email, $phone, $message, $date);
+            mysqli_stmt_bind_param($stmt, "sssss", $first_name, $last_name, $email, $phone, $message);
             
             if (mysqli_stmt_execute($stmt)) {
                 // After successful database insertion, send email
@@ -159,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 </div>
                                 <div class='field'>
                                     <span class='label'>🕒 Submitted at:</span>
-                                    <span class='value'>" . htmlspecialchars($date, ENT_QUOTES, 'UTF-8') . "</span>
+                                    <span class='value'>" . htmlspecialchars(date('Y-m-d H:i:s'), ENT_QUOTES, 'UTF-8') . "</span>
                                 </div>
                             </div>
                             <div class='footer'>
