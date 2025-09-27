@@ -5,7 +5,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include 'db_connect.php'; // Include the connection file
-include 'config.php'; // Include the configuration file
 
 // Check if database connection was successful
 if (!$conn) {
@@ -79,16 +78,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
                     // Server settings
                     $mail->isSMTP();
-                    $mail->Host       = SMTP_HOST;
+                    $mail->Host       = 'smtp.gmail.com';
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = SMTP_USERNAME;
-                    $mail->Password   = SMTP_PASSWORD;
+                    $mail->Username   = 'reservation@airlineswebsales.com';
+                    $mail->Password   = 'xvtfpxrifncatjzg';
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                    $mail->Port       = SMTP_PORT;
+                    $mail->Port       = 465;
                     
                     // Recipients
-                    $mail->setFrom(SMTP_USERNAME, FROM_NAME);
-                    $mail->addAddress(ADMIN_EMAIL); // Admin email
+                    $mail->setFrom('reservation@airlineswebsales.com', 'TicketFeeAndTx');
+                    $mail->addAddress('sharunch11@gmail.com'); // Admin email
                     
                     // Reply-to user's email for easy response
                     $mail->addReplyTo($email, $first_name . ' ' . $last_name);
